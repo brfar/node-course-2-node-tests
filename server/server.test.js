@@ -1,10 +1,13 @@
-/*eslint-disable*/
 const request = require('supertest');
+// 'supertest' was made by the creators of express to make testing express apps simpler
+
 const expect = require('expect');
 
 var app = require('./server.js').app;
 
+// the 'it' still is coming from mocha, 'supertest' is used to fill in the gaps.
 it('should return hello world response', done => {
+	/* to use supertest we call request, passing in the express application */
 	request(app)
 		.get('/')
 		.expect(200)
@@ -12,7 +15,7 @@ it('should return hello world response', done => {
 		.end(done);
 });
 
-it('stuff', done => {
+it('should return my user object', done => {
 	request(app)
 		.get('/users')
 		.expect(200)
@@ -22,5 +25,5 @@ it('stuff', done => {
 				age: 27,
 			})
 		})
-		.end(done);
+		.end(done); // <~ wrap up the request!
 });
